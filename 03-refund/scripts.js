@@ -6,6 +6,7 @@ const category = document.getElementById("category");
 
 // Seleciona os elementos da lista
 const expenseList = document.querySelector("ul");
+const expenseQuantity = document.querySelector("aside header p span");
 
 // Captura o evento de input para formatar o valor
 amount.oninput = () => {
@@ -14,15 +15,18 @@ amount.oninput = () => {
 
   // Transformar o valor em centatos (exemplo: 150/100 = 1.5 é equivalente a R$ 1,50)
   value = Number(value) / 100;
+
   // Atualiza o valor do input
   amount.value = formatCurrencyBRL(value);
 };
+
 function formatCurrencyBRL(value) {
   // Formata o valor no padrão BRL (Real Brasileiro)
   value = value.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
+
   // Retorna o valor formatado
   return value;
 }
@@ -46,6 +50,7 @@ form.onsubmit = (event) => {
   expenseAdd(newExpense);
 };
 
+// Adiciona um novo item na lista
 function expenseAdd(newExpense) {
   try {
     // Cria o elemento para a adicionar o item (li) na lista (ul)
@@ -60,16 +65,19 @@ function expenseAdd(newExpense) {
     // Cria a info da despesa
     const expenseInfo = document.createElement("div");
     expenseInfo.classList.add("expense-info");
+
     // Cria o nome da despesa
     const expenseName = document.createElement("strong");
     expenseName.textContent = newExpense.expense;
+
     // Cria a categoria da despesa
     const expenseCategory = document.createElement("span");
     expenseCategory.textContent = newExpense.category_name;
+
     // Adiciona o nome e a categoria na div das informações da despesa
     expenseInfo.append(expenseName, expenseCategory);
 
-    // Criando o valor da despesa
+    // Cria o valor da despesa
     const expenseAmount = document.createElement("span");
     expenseAmount.classList.add("expense-amount");
     expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount
@@ -84,8 +92,30 @@ function expenseAdd(newExpense) {
 
     // Adiciona as informações no item
     expenseItem.append(expenseIcon, expenseInfo, expenseAmount, removeIcon);
+
+    // Adiciona o item na lista
+    expenseList.append(expenseItem);
+
+    // Atualiza os totais
+    updateTotals();
   } catch (error) {
     alert("Não foi possível atualizar a lista de despesas.");
+    console.log(error);
+  }
+}
+
+// Atualiza os totais
+function updateTotals() {
+  try {
+    // Recupera todos os itens (li) da lista (ul)
+    const items = expenseList.children;
+
+    // Atualiza a quantidade de itens da lista
+    expenseQuantity.textContent = `${items.length} ${
+      items.length > 1 ? "despesas" : "despesa"
+    }`;
+  } catch (error) {
+    alert("Não foi possível atualizar os totais.");
     console.log(error);
   }
 }
