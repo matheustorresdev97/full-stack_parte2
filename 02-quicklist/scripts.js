@@ -13,4 +13,26 @@ const addButton = document.querySelector(".add-button");
 const notification = document.getElementById("notification");
 const closeNotification = document.querySelector(".close-notification");
 
-
+function renderList() {
+    // Limpa a lista atual
+    shoppingList.innerHTML = "";
+  
+    // Para cada item, cria um elemento na lista
+    items.forEach((item) => {
+      const listItem = document.createElement("div");
+      listItem.className = "list-item";
+  
+      // Define o HTML interno do item
+      listItem.innerHTML = `
+              <div class="checkbox ${item.checked ? "checked" : ""}" 
+                   onclick="toggleItem(${item.id})"></div>
+              <span class="item-text">${item.text}</span>
+              <button class="delete-button" onclick="deleteItem(${
+                item.id
+              })">🗑</button>
+          `;
+  
+      // Adiciona o item à lista
+      shoppingList.appendChild(listItem);
+    });
+  }
