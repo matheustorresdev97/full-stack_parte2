@@ -70,3 +70,13 @@ function deleteItem(id) {
   // Mostra notificação
   showNotification();
 }
+
+function toggleItem(id) {
+  // Mapeia o array e inverte o estado 'checked' do item específico
+  items = items.map((item) =>
+    item.id === id ? { ...item, checked: !item.checked } : item
+  );
+
+  // Atualiza a lista na tela
+  renderList();
+}
