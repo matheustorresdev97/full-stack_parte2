@@ -68,8 +68,16 @@ function expenseAdd(newExpense) {
     expenseCategory.textContent = newExpense.category_name;
     // Adiciona o nome e a categoria na div das informações da despesa
     expenseInfo.append(expenseName, expenseCategory);
+
+    // Criando o valor da despesa
+    const expenseAmount = document.createElement("span");
+    expenseAmount.classList.add("expense-amount");
+    expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount
+      .toUpperCase()
+      .replace("R$", "")}`;
+
     // Adiciona as informações no item
-    expenseItem.append(expenseIcon, expenseInfo);
+    expenseItem.append(expenseIcon, expenseInfo, expenseAmount);
   } catch (error) {
     alert("Não foi possível atualizar a lista de despesas.");
     console.log(error);
