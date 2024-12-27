@@ -90,3 +90,20 @@ function showNotification() {
     notification.classList.remove("show");
   }, 3000);
 }
+
+// Event Listeners
+// Botão de adicionar
+addButton.addEventListener("click", addItem);
+
+// Tecla Enter no input
+newItemInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addItem();
+});
+
+// Fechar notificação
+closeNotification.addEventListener("click", () => {
+  notification.classList.remove("show");
+});
+
+// Inicializa a lista
+renderList();
