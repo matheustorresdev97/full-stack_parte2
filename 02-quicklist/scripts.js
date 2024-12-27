@@ -59,3 +59,14 @@ function addItem() {
     renderList();
   }
 }
+
+function deleteItem(id) {
+  // Filtra o array removendo o item com o ID específico
+  items = items.filter((item) => item.id !== id);
+
+  // Atualiza a lista na tela
+  renderList();
+
+  // Mostra notificação
+  showNotification();
+}
