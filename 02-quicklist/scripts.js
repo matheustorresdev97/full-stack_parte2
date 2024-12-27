@@ -14,16 +14,16 @@ const notification = document.getElementById("notification");
 const closeNotification = document.querySelector(".close-notification");
 
 function renderList() {
-    // Limpa a lista atual
-    shoppingList.innerHTML = "";
-  
-    // Para cada item, cria um elemento na lista
-    items.forEach((item) => {
-      const listItem = document.createElement("div");
-      listItem.className = "list-item";
-  
-      // Define o HTML interno do item
-      listItem.innerHTML = `
+  // Limpa a lista atual
+  shoppingList.innerHTML = "";
+
+  // Para cada item, cria um elemento na lista
+  items.forEach((item) => {
+    const listItem = document.createElement("div");
+    listItem.className = "list-item";
+
+    // Define o HTML interno do item
+    listItem.innerHTML = `
               <div class="checkbox ${item.checked ? "checked" : ""}" 
                    onclick="toggleItem(${item.id})"></div>
               <span class="item-text">${item.text}</span>
@@ -31,8 +31,31 @@ function renderList() {
                 item.id
               })">🗑</button>
           `;
-  
-      // Adiciona o item à lista
-      shoppingList.appendChild(listItem);
-    });
+
+    // Adiciona o item à lista
+    shoppingList.appendChild(listItem);
+  });
+}
+
+function addItem() {
+  // Pega o texto do input e remove espaços extras
+  const text = newItemInput.value.trim();
+
+  if (text) {
+    // Cria novo item com ID único usando timestamp
+    const newItem = {
+      id: Date.now(),
+      text: text,
+      checked: false,
+    };
+
+    // Adiciona o item ao array
+    items.push(newItem);
+
+    // Limpa o input
+    newItemInput.value = "";
+
+    // Atualiza a lista na tela
+    renderList();
   }
+}
