@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteador de Números</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <img src="logo.png" alt="logo umbers">
+        </div>
+        <div class="online-status">ONLINE - GRATUITO</div>
+      </header>
+
+      <h1 class="title">SORTEADOR<br />DE NÚMEROS</h1>
+
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-label">NÚMEROS</span>
+          <input type="number" id="quantity" value="2" min="1" />
+        </div>
+        <div class="input-group">
+          <span class="input-label">DE</span>
+          <input type="number" id="min" value="1" min="0" />
+        </div>
+        <div class="input-group">
+          <span class="input-label">DE</span>
+          <input type="number" id="max" value="100" min="1" />
+        </div>
+      </div>
+
+      <div class="toggle-container">
+        <div class="toggle" id="toggleRepeat"></div>
+        <span>Não repetir número</span>
+      </div>
+
+      <button class="button" id="drawButton">SORTEAR</button>
+
+      <div class="results" id="results">
+        <h2 class="result-title">RESULTADO DO SORTEIO</h2>
+        <div class="numbers" id="drawnNumbers"></div>
+        <button class="button" style="margin-top: 20px" id="drawAgainButton">
+          SORTEAR NOVAMENTE
+        </button>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="logo-icon" style="width: 20px; height: 20px"></span>
+            Como funciona o sorteador de números?
+          </div>
+          <div class="faq-answer">
+            O sorteador utiliza um algoritmo de geração aleatória para criar
+            números dentro do intervalo especificado pelo usuário.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="logo-icon" style="width: 20px; height: 20px"></span>
+            Posso escolher o intervalo dos números?
+          </div>
+          <div class="faq-answer">
+            Sim, você pode definir os valores mínimo e máximo para o intervalo
+            dos números sorteados.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
