@@ -80,3 +80,13 @@ function toggleItem(id) {
   // Atualiza a lista na tela
   renderList();
 }
+
+function showNotification() {
+  // Adiciona classe para mostrar notificação
+  notification.classList.add("show");
+
+  // Remove a notificação após 3 segundos
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 3000);
+}
