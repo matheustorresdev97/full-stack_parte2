@@ -13,6 +13,8 @@ const addButton = document.querySelector(".add-button");
 const notification = document.getElementById("notification");
 const closeNotification = document.querySelector(".close-notification");
 
+loadFromLocalStorage();
+
 function renderList() {
   // Limpa a lista atual
   shoppingList.innerHTML = "";
@@ -57,6 +59,7 @@ function addItem() {
 
     // Atualiza a lista na tela
     renderList();
+    saveToLocalStorage();
   }
 }
 
@@ -66,7 +69,7 @@ function deleteItem(id) {
 
   // Atualiza a lista na tela
   renderList();
-
+  saveToLocalStorage();
   // Mostra notificação
   showNotification();
 }
@@ -79,6 +82,7 @@ function toggleItem(id) {
 
   // Atualiza a lista na tela
   renderList();
+  saveToLocalStorage();
 }
 
 function showNotification() {
@@ -107,3 +111,17 @@ closeNotification.addEventListener("click", () => {
 
 // Inicializa a lista
 renderList();
+
+// Salvar no localStorage
+function saveToLocalStorage() {
+  localStorage.setItem("shoppingList", JSON.stringify(items));
+}
+
+// Carregar do localStorage
+function loadFromLocalStorage() {
+  const savedItems = localStorage.getItem("shoppingList");
+  if (savedItems) {
+    items = JSON.parse(savedItems);
+    renderList();
+  }
+}
